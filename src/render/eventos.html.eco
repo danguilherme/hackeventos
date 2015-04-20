@@ -1,0 +1,21 @@
+---
+title: "Eventos"
+layout: "default"
+isPage: true
+menuOrder: 1
+---
+
+<ul>
+<% for event in @events : %>
+  <li>
+    <div>
+      <header>
+        <h2 class="event-name"><a href="<%- event.url %>" target="_BLANK"><%- event.name %></a></h2>
+        <% if event.edition : %><p class="edition"><%- event.edition %>ª edição</p><% end %>
+        <p class="brought-by">Por <a href="<%- event.organizer.url %>"><%- event.organizer.name %></a></p>
+      </header>
+
+    </div>
+  </li>
+<% end %>
+</ul>
