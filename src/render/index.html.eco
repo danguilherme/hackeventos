@@ -1,7 +1,8 @@
 ---
-title: "Welcome!"
+title: "Home"
 layout: "default"
 isPage: true
+menuOrder: 0
 ---
 
 <p>Welcome to My Website!</p>

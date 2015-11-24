@@ -11,8 +11,12 @@ menuOrder: 1
     <div>
       <header>
         <h2 class="event-name"><a href="<%- event.url %>" target="_BLANK"><%- event.name %></a></h2>
-        <% if event.edition : %><p class="edition"><%- event.edition %>ª edição</p><% end %>
-        <p class="brought-by">Por <a href="<%- event.organizer.url %>"><%- event.organizer.name %></a></p>
+        <% if event.edition : %>
+          <p class="edition"><%- event.edition %>ª edição</p>
+        <% end %>
+        <% if event.organizer : %>
+          <p class="brought-by">Por <a href="<%- event.organizer.url %>" target="_BLANK"><%- event.organizer.name %></a></p>
+        <% end %>
       </header>
 
     </div>

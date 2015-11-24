@@ -2,10 +2,10 @@
 <head>
     <title><%= @getPreparedTitle() %></title>
     <%- @getBlock("meta").toHTML() %>
-    <%- @getBlock("styles").add(["/styles/main.css"]).toHTML() %>
+    <%- @getBlock("styles").add(["/styles/style.css"]).toHTML() %>
 </head>
 <body>
-  <header>
+  <header id="main-header">
     <h1>HackEventos</h1>
     <p>Para quem curte eventos</p>
 
@@ -22,11 +22,11 @@
     </nav>
   </header>
 
-  <main>
+  <main class="page-<%= @slugify(@document.title) %>">
     <h1><%= @document.title %></h1>
     <%- @content %>
   </main>
-    
+
   <%- @getBlock("scripts").toHTML() %>
 </body>
 </html>
