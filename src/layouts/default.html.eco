@@ -13,17 +13,14 @@
       <ul id="links">
         <% for page in @getCollection("pages").toJSON(): %>
             <li class="<%= if page.id is @document.id then 'active' else 'inactive' %>">
-                <a href="<%= page.url %>">
-                    <%= page.title %>
-                </a>
+                <a href="<%= page.url %>"><%= page.title %></a>
             </li>
         <% end %>
       </ul>
     </nav>
   </header>
 
-  <main class="page-<%= @slugify(@document.title) %>">
-    <h1><%= @document.title %></h1>
+  <main class="page-<%= @slug(@document.title).toLowerCase() %>">
     <%- @content %>
   </main>
 

@@ -1,9 +1,11 @@
+slug = require 'slug'
+
 # Define the DocPad Configuration
 docpadConfig = {
   collections:
     pages: ->
       @getCollection("html").findAllLive({isPage:true}, [{ menuOrder: 1 }])
-            
+
 	templateData:
     # Specify some site properties
     site:
@@ -115,6 +117,7 @@ docpadConfig = {
           state: ""
       }
     ]
+    slug: slug
 }
 
 # Export the DocPad Configuration

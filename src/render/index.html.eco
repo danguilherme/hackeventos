@@ -1,8 +1,32 @@
 ---
-title: "Home"
 layout: "default"
 isPage: true
 menuOrder: 0
 ---
 
-<p>Welcome to My Website!</p>
+<div id="map">
+  <strong>"Mapa"</strong>
+</div>
+
+<div id="events">
+  <h1>Eventos</h1>
+
+  <ul>
+    <% for event in @events : %>
+      <li class="event-item event-type-<%= @slug(event.type) %>">
+        <div>
+          <header>
+            <h2 class="event-name"><a href="<%- event.url %>" target="_BLANK"><%- event.name %></a></h2>
+            <% if event.edition : %>
+              <p class="edition"><%- event.edition %>ª edição</p>
+            <% end %>
+            <% if event.organizer : %>
+              <p class="brought-by">Por <a href="<%- event.organizer.url %>" target="_BLANK"><%- event.organizer.name %></a></p>
+            <% end %>
+          </header>
+
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</div>
