@@ -24,6 +24,6 @@
     <%- @content %>
   </main>
 
-  <%- @getBlock("scripts").toHTML() %>
+  <%- @getBlock("scripts").add(@site.scripts).toHTML() %>
 </body>
 </html>

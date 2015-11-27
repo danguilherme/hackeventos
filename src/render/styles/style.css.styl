@@ -21,9 +21,9 @@ $theme-color-accent-default = #FF5722
 $theme-color-secondary-text = #727272
 $theme-color-divider = #B6B6B6
 
-$theme-event-color-meetup = #ffc4c4
-$theme-event-color-event = #c4ffc4
-$theme-event-color-hackathon = #c4c4ff
+$theme-event-color-meetup = #d00 //#ffc4c4
+$theme-event-color-event = #0d0 //#c4ffc4
+$theme-event-color-hackathon = #00d //#c4c4ff
 
 /*
 * BASE
@@ -99,6 +99,10 @@ main
 #map
   flex-grow 9
 
+  #map-canvas
+    width 100%
+    height 100%
+
 #events
   flex-grow 1
   background-color $theme-color-primary-light
@@ -124,6 +128,7 @@ main
       background-color #fff
       transition background-color .2s linear
 
+
       .event-name,
       p
         margin 0
@@ -132,11 +137,17 @@ main
         border-color $theme-event-color-meetup
         &:hover
           background-color lighten($theme-event-color-meetup, 70%)
+        a
+          color darken($theme-event-color-meetup, 20%)
       &.event-type-event
         border-color $theme-event-color-event
         &:hover
           background-color lighten($theme-event-color-event, 70%)
+        a
+          color darken($theme-event-color-event, 20%)
       &.event-type-hackathon
         border-color $theme-event-color-hackathon
         &:hover
           background-color lighten($theme-event-color-hackathon, 70%)
+        a
+          color darken($theme-event-color-hackathon, 20%)

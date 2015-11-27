@@ -1,4 +1,11 @@
 slug = require 'slug'
+events = require './events'
+
+events.sort((one, other) =>
+    oneDate = if Array.isArray(one.date) then one.date[0] else one.date;
+    otherDate = if Array.isArray(other.date) then other.date[0] else other.date;
+    return oneDate < otherDate;
+  );
 
 # Define the DocPad Configuration
 docpadConfig = {
@@ -10,7 +17,7 @@ docpadConfig = {
     # Specify some site properties
     site:
       # The production URL of our website
-      url: "http:#danguilherme.github.io/hackeventos/"
+      url: "http://danguilherme.github.io/hackeventos/"
 
       # The default title of our website
       title: "HackEventos"
@@ -24,6 +31,11 @@ docpadConfig = {
       keywords: """
           eventos, hackathon, desenvolvimento, dev
           """
+
+      scripts: [
+        "https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyDWl2q2Q07VR9ri1d7QOWtSfnKS9_fj9a8&sensor=TRUE",
+        "scripts/map.js"
+      ]
 
     # -----------------------------
     # Helper Functions
@@ -51,73 +63,11 @@ docpadConfig = {
 
     # ------------------------------
     # Events
-    events: [
-      {
-        type: "meetup"
-        name: "5º Meetup CSS"
-        url: "http://www.meetup.com/CSS-SP/events/220119108/"
-        thumbnail: "/services/events/media/2015/meetupcss-sp.jpg"
-        price: "R$ 0"
-
-        organizer:
-          name: "Luiz Felipe Tartarotti Fialho"
-          url: ""
-
-        date: "2015-02-05",
-        address:
-          city: "São Paulo"
-          state: "São Paulo"
-      }
-
-      {
-        type: "event"
-        name: "RuPy Campinas"
-        url: "http://campinas.rupy.com.br/"
-        thumbnail: "/services/events/media/2015/rupy-campinas.jpg"
-
-        address: "Avenida Albert Einstein, 400 - Campinas, São Paulo"
-
-        location: "Campinas, SP"
-        date: "2015-06-20"
-        price: "R$ 60"
-      },
-      {
-        type: "event"
-        name: "BrazilJS"
-        url: "http://braziljs.com.br"
-        edition: 5
-        price: "R$ 180"
-
-        organizer:
-          name: "BrazilJS"
-          url: "http://braziljs.org"
-
-        date: ["2015-08-22", "2015-08-23"]
-        address:
-          venue: "Coco Bongo",
-          address: "Boulevard Kukulcan, 30",
-          city: "Cancún",
-          state: "Quintana"
-      }
-      {
-        type: "hackathon"
-        name: "CI&T - HackDay"
-        url: "http://ciandt.com/hackday"
-
-        organizer:
-          name: "CI&T"
-          url: "http://ciandt.com"
-
-        edition: 1
-        date: ["2015-10-22"]
-        address:
-          venue: "Somewhere"
-          address: ""
-          city: ""
-          state: ""
-      }
-    ]
-    slug: slug
+    events: events
+    slug: (str) ->
+      if (!str)
+        return slug(str);
+      return str;
 }
 
 # Export the DocPad Configuration

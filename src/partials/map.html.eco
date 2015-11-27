@@ -1,0 +1,4 @@
+<div id="map-canvas"></div>
+<script>
+  window.eventsList = <%- JSON.stringify(@events) %>;
+</script>

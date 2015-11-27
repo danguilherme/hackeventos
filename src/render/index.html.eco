@@ -1,11 +1,12 @@
 ---
+title: "Home"
 layout: "default"
 isPage: true
 menuOrder: 0
 ---
 
 <div id="map">
-  <strong>"Mapa"</strong>
+  <%- @partial('map') %>
 </div>
 
 <div id="events">
@@ -16,6 +17,7 @@ menuOrder: 0
       <li class="event-item event-type-<%= @slug(event.type) %>">
         <div>
           <header>
+            <time datetime="<%- event.date %>"><%- event.date %></time>
             <h2 class="event-name"><a href="<%- event.url %>" target="_BLANK"><%- event.name %></a></h2>
             <% if event.edition : %>
               <p class="edition"><%- event.edition %>ª edição</p>
