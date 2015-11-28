@@ -34,6 +34,9 @@ docpadConfig = {
 
       scripts: [
         "https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyDWl2q2Q07VR9ri1d7QOWtSfnKS9_fj9a8&sensor=TRUE",
+        "scripts/infobox/infobox.js",
+        "scripts/markerclusterer/markerclusterer.js",
+        "scripts/app.js",
         "scripts/map.js"
       ]
 

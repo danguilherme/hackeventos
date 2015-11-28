@@ -1,7 +1,6 @@
 module.exports = [{
   type: "meetup",
   name: "Meetup #10",
-  url: "http://www.meetup.com/pt/CSS-SP/events/225755287/",
   thumbnail: "/services/events/media/2015/meetupcss-sp.jpg",
   price: "R$ 0",
   organizer: {
@@ -15,10 +14,9 @@ module.exports = [{
     lng: -46.8754939
   }
 }, {
-  type: "event",
+  type: "conference",
   name: "RuPy Campinas",
   url: "http://campinas.rupy.com.br/",
-  thumbnail: "/services/events/media/2015/rupy-campinas.jpg",
   address: "Avenida Albert Einstein, 400 - Campinas, São Paulo",
   location: {
     address: "Campinas, SP",
@@ -28,7 +26,7 @@ module.exports = [{
   date: "2015-06-20",
   price: "R$ 60"
 }, {
-  type: "event",
+  type: "conference",
   name: "BrazilJS",
   url: "http://braziljs.com.br",
   edition: 5,

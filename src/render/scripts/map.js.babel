@@ -1,0 +1,150 @@
+(function(window, document, undefined) {
+  var THEME = {
+    EVENT_COLOR_MEETUP: "#d00",
+    EVENT_COLOR_CONFERENCE: "#0d0",
+    EVENT_COLOR_HACKATHON: "#00d"
+  };
+
+  var map;
+  var openedInfobox = null;
+  var eventsMarkers = [];
+
+  document.addEventListener('readystatechange', function() {
+    if (document.readyState === 'complete') onReady()
+  });
+
+  function onReady() {
+    var mapOptions = {
+      center: new google.maps.LatLng(-23.6815315, -46.8754939),
+      zoom: 5,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+
+    map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+
+    var markers = createMarkers(eventsList);
+    var markerCluster = new MarkerClusterer(map, markers);
+
+    // save the events with theirs relative markers
+    eventsList.forEach((event, index) => {
+      eventsMarkers.push({
+        marker: markers[index],
+        event: event
+      })
+    });
+
+    fitMapBounds();
+  }
+
+  function createMarkers(events) {
+    // geocoder = new google.maps.Geocoder();
+    return events.map(function(event) {
+      var pinConfig = createPin(THEME["EVENT_COLOR_" + event.type.toUpperCase()].replace("#", ""));
+
+      var marker = new google.maps.Marker({
+        map: map,
+        draggable: false,
+        icon: pinConfig.pin,
+        shadow: pinConfig.shadow,
+        position: {
+          lat: event.location.lat,
+          lng: event.location.lng
+        }
+      });
+
+      google.maps.event.addListener(marker, 'click', (function(marker, event) {
+        return function() {
+          return onMarkerClick(marker, event);
+        }
+      })(marker, event));
+
+      return marker;
+    });
+  }
+
+  function createPin(color) {
+    var pinColor = color;
+    var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor,
+      new google.maps.Size(21, 34),
+      new google.maps.Point(0, 0),
+      new google.maps.Point(10, 34));
+    var pinShadow = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_shadow",
+      new google.maps.Size(40, 37),
+      new google.maps.Point(0, 0),
+      new google.maps.Point(12, 35));
+
+    return {
+      pin: pinImage,
+      shadow: pinShadow
+    };
+  }
+
+  function fitMapBounds() {
+    closeOpenedInfobox();
+
+    var markers = eventsMarkers.map(item => item.marker);
+    var latlngbounds = new google.maps.LatLngBounds();
+    markers.forEach(marker => {
+      latlngbounds.extend(marker.position);
+    });
+    map.fitBounds(latlngbounds);
+  }
+
+  function openInfobox(eventIndex) {
+    if (eventIndex < 0 || eventIndex >= eventsMarkers.length)
+      return;
+
+    var {marker, event} = eventsMarkers[eventIndex];
+
+    var myOptions = {
+      content: createInfoBoxHtml(event),
+      pixelOffset: new google.maps.Size(-150, 0),
+      boxClass: `infobox infobox-event-type-${event.type}`
+    };
+
+    closeOpenedInfobox();
+
+    var infoBox = new InfoBox(myOptions);
+    infoBox.open(map, marker);
+    google.maps.event.addListener(infoBox, "closeclick", () => openedInfobox = null);
+
+    openedInfobox = infoBox;
+
+    map.setCenter(marker.getPosition());
+    map.setZoom(10);
+  }
+
+  function closeOpenedInfobox() {
+    if (openedInfobox)
+      openedInfobox.close();
+    openedInfobox = null;
+  }
+
+  function onMarkerClick(marker, event) {
+    var eventIndex = eventsMarkers.findIndex(item => item.event === event);
+    openInfobox(eventIndex);
+  }
+
+  function createInfoBoxHtml(event) {
+    let template = document.getElementById('map-infobox');
+    let tmplDocument = document.importNode(template.content, true);
+
+    let container = tmplDocument.querySelector('.infobox-inner');
+    container.classList.add(`event-type-${event.type}`);
+
+    let anchor = container.querySelector('.event-url');
+    anchor.href = event.url;
+    anchor.textContent = event.name;
+
+    let priceSpan = container.querySelector('.event-price');
+    priceSpan.textContent = event.price || "R$ 0";
+
+    return container;
+  }
+
+  window.eventsMap = {
+    openInfobox: openInfobox,
+    fitBounds: fitMapBounds,
+    closeOpenedInfobox: close
+  }
+}(window, document));

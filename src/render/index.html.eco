@@ -13,12 +13,12 @@ menuOrder: 0
   <h1>Eventos</h1>
 
   <ul>
-    <% for event in @events : %>
-      <li class="event-item event-type-<%= @slug(event.type) %>">
+    <% for event, index in @events : %>
+      <li class="event-item event-type-<%= @slug(event.type) %>" data-index="<%- index %>">
         <div>
           <header>
             <time datetime="<%- event.date %>"><%- event.date %></time>
-            <h2 class="event-name"><a href="<%- event.url %>" target="_BLANK"><%- event.name %></a></h2>
+            <h2 class="event-name"><a class="event-url" href="<%- event.url %>" target="_BLANK"><%- event.name %></a></h2>
             <% if event.edition : %>
               <p class="edition"><%- event.edition %>ª edição</p>
             <% end %>

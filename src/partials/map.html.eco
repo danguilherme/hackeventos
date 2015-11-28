@@ -1,4 +1,9 @@
 <div id="map-canvas"></div>
+<template id="map-infobox">
+  <div class="infobox-inner">
+    <a class="event-url"></a> - <span class="event-price"></span>
+  </div>
+</template>
 <script>
   window.eventsList = <%- JSON.stringify(@events) %>;
 </script>
