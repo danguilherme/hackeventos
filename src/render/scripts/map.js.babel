@@ -129,6 +129,12 @@
     let template = document.getElementById('map-infobox');
     let tmplDocument = document.importNode(template.content, true);
 
+    let eventType = tmplDocument.querySelector('.event-type');
+    eventType.textContent = event.type;
+
+    let eventPrice = tmplDocument.querySelector('.event-price');
+    eventPrice.textContent = event.price;
+
     let container = tmplDocument.querySelector('.infobox-inner');
     container.classList.add(`event-type-${event.type}`);
 

@@ -1,7 +1,7 @@
 module.exports = [{
   type: "meetup",
-  name: "Meetup #10",
-  thumbnail: "/services/events/media/2015/meetupcss-sp.jpg",
+  name: "Meetup CSS",
+  edition: 10,
   price: "R$ 0",
   organizer: {
     name: "Luiz Felipe Tartarotti Fialho",
@@ -17,14 +17,13 @@ module.exports = [{
   type: "conference",
   name: "RuPy Campinas",
   url: "http://campinas.rupy.com.br/",
-  address: "Avenida Albert Einstein, 400 - Campinas, São Paulo",
+  price: "R$ 60",
+  date: "2015-06-20",
   location: {
-    address: "Campinas, SP",
+    address: "Avenida Albert Einstein, 400 - Campinas, São Paulo",
     lat: -22.8947472,
     lng: -47.1703473
-  },
-  date: "2015-06-20",
-  price: "R$ 60"
+  }
 }, {
   type: "conference",
   name: "BrazilJS",
@@ -45,6 +44,7 @@ module.exports = [{
   type: "hackathon",
   name: "CI&T - HackDay",
   url: "http://ciandt.com/hackday",
+  price: "R$ 0",
   organizer: {
     name: "CI&T",
     url: "http://ciandt.com"

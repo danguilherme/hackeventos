@@ -1,7 +1,16 @@
 <div id="map-canvas"></div>
 <template id="map-infobox">
   <div class="infobox-inner">
-    <a class="event-url"></a> - <span class="event-price"></span>
+    <span class="event-type"></span>
+    <span class="event-price"></span>
+    <div>
+        <a class="event-url"></a></span>
+    </div>
+    <div>
+      Organizado por:
+      Datas:
+      Avenida Albert Einstein, 400 - Campinas, São Paulo
+    </div>
   </div>
 </template>
 <script>

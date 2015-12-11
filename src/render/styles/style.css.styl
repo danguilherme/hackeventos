@@ -115,6 +115,8 @@ main
       background-color #fff
       border 2px solid
       border-radius 3px
+      border-top-left-radius (tags-radius = 10px)
+      border-top-right-radius tags-radius
       opacity .9
 
       &::before
@@ -128,8 +130,23 @@ main
         border-left 10px solid transparent
         border-right 10px solid transparent
         border-bottom 10px solid
-      div
-        padding 15px
+      .infobox-inner
+        padding (tag-height = 1.4em) 10px 10px
+
+        .event-type,
+        .event-price
+          position absolute
+          top 0
+          padding 0 .5em
+          line-height tag-height
+          font-weight bold
+          color white
+        .event-type
+          left 0
+          border-bottom-right-radius tags-radius
+        .event-price
+          right 0
+          border-bottom-left-radius tags-radius
 
 #events
   flex-grow 1
@@ -146,7 +163,8 @@ main
     .event-item
       content ''
       display block
-      padding 10px
+      padding (tag-height = 1.4em) 10px 10px
+      position relative
 
       border-left gray 1px solid
       border-bottom gray 1px solid
@@ -155,6 +173,20 @@ main
       background-color #fff
       transition background-color .2s linear
 
+      .event-type,
+      .event-price
+        position absolute
+        top 0
+        padding 0 .5em
+        line-height tag-height
+        font-weight bold
+        color white
+      .event-type
+        left 0
+        border-bottom-right-radius (tags-radius = 10px)
+      .event-price
+        right 0
+        border-bottom-left-radius tags-radius
 
       .event-name,
       p
@@ -168,6 +200,9 @@ main
   &.infobox-event-type-meetup
     background-color $theme-event-color-meetup-light
     border-color $theme-event-color-meetup-dark
+    .event-type,
+    .event-price
+      background-color $theme-event-color-meetup-dark
     &::before
       border-bottom-color $theme-event-color-meetup-dark
     a
@@ -176,6 +211,9 @@ main
   &.infobox-event-type-conference
     background-color $theme-event-color-conference-light
     border-color $theme-event-color-conference-dark
+    .event-type,
+    .event-price
+      background-color $theme-event-color-conference-dark
     &::before
       border-bottom-color $theme-event-color-conference-dark
     a
@@ -184,6 +222,9 @@ main
   &.infobox-event-type-hackathon
     background-color $theme-event-color-hackathon-light
     border-color $theme-event-color-hackathon-dark
+    .event-type,
+    .event-price
+      background-color $theme-event-color-hackathon-dark
     &::before
       border-bottom-color $theme-event-color-hackathon-dark
     a
@@ -193,6 +234,9 @@ main
 #events .event-item
   &.event-type-meetup
     border-color $theme-event-color-meetup-dark
+    .event-type,
+    .event-price
+      background-color $theme-event-color-meetup-dark
     &.selected,
     &:hover
       background-color $theme-event-color-meetup-light
@@ -201,6 +245,9 @@ main
 
   &.event-type-conference
     border-color $theme-event-color-conference-dark
+    .event-type,
+    .event-price
+      background-color $theme-event-color-conference-dark
     &.selected,
     &:hover
       background-color $theme-event-color-conference-light
@@ -209,6 +256,9 @@ main
 
   &.event-type-hackathon
     border-color $theme-event-color-hackathon-dark
+    .event-type,
+    .event-price
+      background-color $theme-event-color-hackathon-dark
     &.selected,
     &:hover
       background-color $theme-event-color-hackathon-light
